@@ -3,26 +3,33 @@ require "spicy-proton"
 
 module Game
   class Config
-    CHECKPOINT = 10
     POINT_INCREMENT = 1
+    LEVEL_CHECKPOINT = 10
+    LEVEL_INCREMENT = 1
   end
 
   class Base
      def play
-      puts "Press exit or quit to exit"
+      puts "Game acak kata"
+      puts "Level naik setiap #{Config::LEVEL_CHECKPOINT} point"
       input = nil
       loop do
-        word = Game::Word.new
-        puts "Tebak kata: #{word.random}"
+        word = Word.new
+        puts "Tebak kata: #{word.random} (Type 'exit' or 'quit' to exit)"
         input = gets.chomp
 
         break if over? input
 
         if word.match?(input)
-          Game::Point.increase
-          puts "BENAR! point anda #{Game::Point.point}."
+          Point.increase
+          puts "BENAR! point anda #{Point.point}."
         else
           puts "SALAH! silahkan coba lagi."
+        end
+
+        if Level.levelup? Point.point
+          Level.increase
+          puts "LEVEL UP! level anda #{Level.level}"
         end
       end
 
@@ -36,7 +43,7 @@ module Game
 
   class Word
     def word
-      @word ||= Spicy::Proton.noun
+      @word ||= Spicy::Proton.noun(max: Level.level + Config::LEVEL_INCREMENT)
     end
 
     def random
@@ -59,6 +66,24 @@ module Game
 
       def increase
         @point += Config::POINT_INCREMENT
+      end
+    end
+  end
+
+  class Level
+    @level = 1
+
+    class << self
+      def level
+        @level
+      end
+
+      def increase
+        @level += Config::LEVEL_INCREMENT
+      end
+
+      def levelup? point
+        point != 0 && point % Config::LEVEL_CHECKPOINT == 0
       end
     end
   end
