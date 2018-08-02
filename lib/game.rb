@@ -43,7 +43,7 @@ module Game
 
   class Word
     def word
-      @word ||= Spicy::Proton.noun(max: Level.level + Config::LEVEL_INCREMENT)
+      @word ||= Spicy::Proton.noun(max: Level.word_level)
     end
 
     def random
@@ -84,6 +84,10 @@ module Game
 
       def levelup? point
         point != 0 && point % Config::LEVEL_CHECKPOINT == 0
+      end
+
+      def word_level
+        level + Config::LEVEL_INCREMENT
       end
     end
   end
