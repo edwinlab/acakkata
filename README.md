@@ -15,9 +15,9 @@ $ chmod +x bin/run
 $ ./bin/run
 ```
 
-## Todo
+## Run Test
 ```
-Add unit test
+$ rspec spec
 ```
 
 ## Contributing
