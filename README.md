@@ -1,4 +1,5 @@
 # Game Acak kata
+[![Build Status](https://api.travis-ci.com/edwinlab/acakkata.svg?branch=master)](https://travis-ci.com/edwinlab/acakkata)
 
 ## Installation
 
