@@ -1,5 +1,6 @@
 # Game Acak kata
 [![Build Status](https://api.travis-ci.com/edwinlab/acakkata.svg?branch=master)](https://travis-ci.com/edwinlab/acakkata)
+[![Coverage Status](https://coveralls.io/repos/github/edwinlab/acakkata/badge.svg?branch=master)](https://coveralls.io/github/edwinlab/acakkata?branch=master)
 
 ## Installation
 
